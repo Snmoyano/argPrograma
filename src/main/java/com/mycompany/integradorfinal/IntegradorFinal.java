@@ -59,6 +59,7 @@ public class IntegradorFinal {
 
         conexion.estableceConexion();
         Statement statement = conexion.conectar.createStatement();
+        //`argprograma`.`alumnos` (`legajo`, `nombre`)
         statement.executeUpdate("INSERT INTO alumnos VALUES (\"" + nombre + "\", " + legajo + ", '" + aprobadasJson + "');");
         conexion.cerrarConnection();
     }
@@ -75,6 +76,7 @@ public class IntegradorFinal {
         int legajo = sc.nextInt();
 
         ResultSet result = statement.executeQuery("SELECT * FROM alumnos WHERE legajo=" + legajo + "");
+        
         result.next();
         Alumno alumno = new Alumno(result.getString("nombre"), result.getString("legajo"));
         alumno.setMateriasAprobadas(mapper.readValue(result.getString("materias_aprobadas"), ArrayList.class));
@@ -86,8 +88,7 @@ public class IntegradorFinal {
 
     public static void agregarMateria() throws SQLException {
         Materia materia = new Materia();
-        conexion.estableceConexion();
-
+        
         System.out.println("Nombre de la materia que quiere crear");
         String nombre = sc.next();
         materia.setNombre(nombre);
@@ -96,8 +97,10 @@ public class IntegradorFinal {
         int numero = sc.nextInt();
 
         System.out.println("Nombre de la/s correlativa/s de la materia");
+        
         ArrayList<String> correlativas = new ArrayList<>();
         String input;
+        
         for (int i = 0; i < numero; i++) {
             input = sc.next();
             correlativas.add(input);
@@ -107,7 +110,7 @@ public class IntegradorFinal {
 
         conexion.estableceConexion();
         Statement statement = conexion.conectar.createStatement();
-        statement.executeUpdate("INSERT INTO materia VALUES(\"" + nombre + "\",'" + correlativasJson + "');");
+        statement.executeUpdate("INSERT INTO materias VALUES(\"" + nombre + "\",'" + correlativasJson + "');");
         conexion.cerrarConnection();
     }
 
@@ -122,7 +125,7 @@ public class IntegradorFinal {
         conexion.estableceConexion();
         Statement statement = conexion.conectar.createStatement();
 
-        ResultSet result = statement.executeQuery("SELECT * FROM materia_aprobadas");
+        ResultSet result = statement.executeQuery("SELECT * FROM materias");
 
         while (result.next()) {
 
@@ -147,10 +150,10 @@ public class IntegradorFinal {
         do {
             input1 = 0;
             System.out.println("Eliga Opcion:");
-            System.out.println("1 - Ingresar un alumno");
-            System.out.println("2 -  Datos de un alumno");
-            System.out.println("3 - Crear una materia");
-            System.out.println("4 - Datos de una materia");
+            System.out.println("1 - Ingrese un alumno");
+            System.out.println("2 -  Datos de  alumno");
+            System.out.println("3 - Crear materia");
+            System.out.println("4 - Datos materia");
 
             input1 = sc.nextInt();
 
