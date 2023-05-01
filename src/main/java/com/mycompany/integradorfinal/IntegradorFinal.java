@@ -36,18 +36,18 @@ public class IntegradorFinal {
     public static void agregarAlumno() throws SQLException {
         Alumno alumno = new Alumno();
 
-        System.out.println("Nombre del alumno que quiere inscribirse");
+        System.out.println("Nombre del alumno a inscribirse");
         String nombre = sc.next();
         alumno.setNombres(nombre);
 
-        System.out.println("Numero de  legajo");
+        System.out.println("Numero del  legajo");
         int legajo = sc.nextInt();
         alumno.setLegajo(Integer.toString(legajo));
 
-        System.out.println("Materias aprobadas del alumno");
+        System.out.println("Materias aprobadas por alumno");
         int numero = sc.nextInt();
 
-        System.out.println("Nombre materias aprobadas");
+        System.out.println("Nombre materias aprobadas del Alumno");
         ArrayList<String> materiasAprobadas = new ArrayList<>();
         String input;
         for (int i = 0; i < numero; i++) {
@@ -72,7 +72,7 @@ public class IntegradorFinal {
         conexion.estableceConexion();
         Statement statement = conexion.conectar.createStatement();
 
-        System.out.println("Numero de cinco digitos que corresponde al legajo");
+        System.out.println("Numero de  legajo del Alumno");
         int legajo = sc.nextInt();
 
         ResultSet result = statement.executeQuery("SELECT * FROM alumnos WHERE legajo=" + legajo + "");
@@ -96,7 +96,7 @@ public class IntegradorFinal {
         System.out.println("Numero de la cantidad de correlativas que tiene la materia");
         int numero = sc.nextInt();
 
-        System.out.println("Nombre de la/s correlativa/s de la materia");
+        System.out.println("Nombre/s  correlativa/s ");
         
         ArrayList<String> correlativas = new ArrayList<>();
         String input;
